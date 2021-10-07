@@ -13,19 +13,20 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
+
       {% for a in ab %}
+       <tr>
       <td>{{a.teacherid}}</td>
       <td>{{a.tname}}</td>
       <td>{{a.subject}}</td>
       <td>{{a.address}}</td>
       <td>{{a.mobile}}</td>
       <td>
-         <a type="submit" href="{% url 'tupdate' a.tname %}" class="btn btn-outline-success" value="submit">edit</a>
-        <a type="submit" href="{% url 'tdelete' a.tname %}" class="btn btn-outline-success" value="submit">delte</a>
-      </td>
+         <a type="submit" href="{% url 'tupdate' a.id %}" class="btn btn-sm btn-outline-success" value="submit">edit</a>
+        <a type="submit" href="{% url 'tdelete' a.tname %}" class="btn btn-sm btn-outline-success" value="submit">delte</a>
+      </td></tr>
       {% endfor %}
-    </tr>
+
   </tbody>
   </div>
 </div>

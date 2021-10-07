@@ -1,44 +1,45 @@
 {% extends 'base.html' %}{% block item1 %}
 <table class="table">
-<div class="container">
-  <div class="row">
-<thead>
-    <tr>
+    <div class="container">
+        <div class="row">
+            <thead>
+            <tr>
+                <th scope="col">student id</th>
+                <th scope="col">Name</th>
+                <th scope="col">class</th>
+                <th scope="col">roll no.</th>
+                <th scope="col">mother</th>
+                <th scope="col">father</th>
+                <th scope="col">address</th>
+                <th scope="col">admission date</th>
+                <th scope="col">mobile no.</th>
+                <th scope="col">edit</th>
+            </tr>
+            </thead>
+            <tbody>
 
-      <th scope="col">student id</th>
-      <th scope="col">Name</th>
-      <th scope="col">class</th>
-      <th scope="col">roll no.</th>
-      <th scope="col">mother</th>
-      <th scope="col">father</th>
-      <th scope="col">address</th>
-      <th scope="col">admission date</th>
-      <th scope="col">mobile no.</th>
-      <th scope="col">edit</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      {% for a in ab %}
-      <td>{{a.admissionid}}</td>
-      <td>{{a.name}}</td>
-      <td>{{a.classe}}</td>
-      <td>{{a.roll}}</td>
-      <td>{{a.mother}}</td>
-      <td>{{a.father}}</td>
-      <td>{{a.address}}</td>
-      <td>{{a.admissiondate}}</td>
-      <td>{{a.mobile}}</td>
-      <td>
-        <a type="submit" href="{% url 'stuupdate' a.name %}" class="btn btn-outline-success" value="submit">edit</a>
-        <a type="submit" href="{% url 'studelete' a.name %}" class="btn btn-outline-success" value="submit">delte</a>
-</td>
 
-      {% endfor %}
-    </tr>
-  </tbody>
-</div>
-</div>
+            {% for a in ab %}
+            <tr>
+                <td>{{a.admissionid}}</td>
+                <td>{{a.name}}</td>
+                <td>{{a.classe}}</td>
+                <td>{{a.roll}}</td>
+                <td>{{a.mother}}</td>
+                <td>{{a.father}}</td>
+                <td>{{a.address}}</td>
+                <td>{{a.admissiondate}}</td>
+                <td>{{a.mobile}}</td>
+                <td>
+                    <a type="submit" href="{% url 'stuupdate' a.id %}" class="btn btn-sm btn-outline-success" value="submit">edit</a>
+                    <a type="submit" href="{% url 'studelete' a.name %}" class="btn btn-sm btn-outline-success" value="submit">delte</a>
+                </td>
+            </tr>
+            {% endfor %}
+
+            </tbody>
+        </div>
+    </div>
 </table>
 
 {% endblock %}

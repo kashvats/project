@@ -75,8 +75,8 @@ def teacheradd(request):
 
 
 @login_required(login_url='/login')
-def teacherupdate(request, name):
-    ab = teacher.objects.get(tname=name)
+def teacherupdate(request, id):
+    ab = teacher.objects.get(pk=id)
     if request.method == 'POST':
         ak = teacherplus(request.POST, instance=ab)
         if ak.is_valid():
@@ -84,7 +84,7 @@ def teacherupdate(request, name):
             address = ak.cleaned_data.get('address')
             mobile = ak.cleaned_data.get('mobile')
             subject = ak.cleaned_data.get('subject')
-            up = teacher(tname=name, teacherid=admission_id(), subject=subject, address=address, mobile=mobile)
+            up = teacher(id=id,tname=name, teacherid=admission_id(), subject=subject, address=address, mobile=mobile)
             up.save()
             return HttpResponseRedirect('/tlist')
         else:
@@ -121,7 +121,7 @@ def studentadd(request):
             up = student(name=name, admissionid=admission_id(), roll=roll, classe=classe, address=address,
                          mother=mother, father=father, mobile=mobile)
             up.save()
-            return HttpResponseRedirect('/stulist')
+            return redirect('/')
         else:
             return HttpResponse('error')
     else:
@@ -130,20 +130,21 @@ def studentadd(request):
 
 
 @login_required(login_url='/login')
-def studentupdate(request, name):
-    ab = student.objects.get(name=name)
+def studentupdate(request, id):
+    ab = student.objects.get(pk=id)
     if request.method == 'POST':
         ak = studentplus(request.POST, instance=ab)
         if ak.is_valid():
             name = ak.cleaned_data.get('name')
-            classe = ak.cleaned_data.get('name')
-            address = ak.cleaned_data.get('name')
-            mother = ak.cleaned_data.get('name')
-            father = ak.cleaned_data.get('name')
-            mobile = ak.cleaned_data.get('name')
-            up = student(name=name, classe=classe, address=address, mother=mother, father=father, mobile=mobile)
+            classe = ak.cleaned_data.get('classe')
+            address = ak.cleaned_data.get('address')
+            mother = ak.cleaned_data.get('mother')
+            father = ak.cleaned_data.get('father')
+            mobile = ak.cleaned_data.get('mobile')
+            roll = ak.cleaned_data.get('roll')
+            up = student(id=id,roll=roll,name=name,admissionid=admission_id(), classe=classe, address=address, mother=mother, father=father, mobile=mobile)
             up.save()
-            return HttpResponseRedirect('/stulist')
+            return HttpResponseRedirect('/')
         else:
             return HttpResponse('error')
     else:
@@ -155,4 +156,4 @@ def studentupdate(request, name):
 def studentdelete(request, name):
     ab = student.objects.get(name=name)
     ab.delete()
-    return HttpResponseRedirect('/stulist')
+    return HttpResponseRedirect('/')
