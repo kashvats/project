@@ -1,0 +1,11 @@
+{% extends 'base.html' %}{% load crispy_forms_tags %}{% block item1 %}
+<form  class="row gy-2 gx-3 align-items-center py-5 px-3" method="POST">{% csrf_token %}
+    <div class="mx-auto col-6" style="width: responsive">
+        {{ak|crispy}}
+        <br>
+        <button type="submit" class="btn btn-outline-success row-6" value="submit">add</button>
+    </div>
+</form>
+
+
+{% endblock %}

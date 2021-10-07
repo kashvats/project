@@ -1,0 +1,33 @@
+{% extends 'base.html' %}{% block item1 %}
+<table class="table">
+<div class="container">
+  <div class="row">
+<thead>
+    <tr>
+      <th scope="col">teacher id</th>
+      <th scope="col">Name</th>
+      <th scope="col">subject</th>
+      <th scope="col">address</th>
+      <th scope="col">mobile no.</th>
+      <th scope="col">edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      {% for a in ab %}
+      <td>{{a.teacherid}}</td>
+      <td>{{a.tname}}</td>
+      <td>{{a.subject}}</td>
+      <td>{{a.address}}</td>
+      <td>{{a.mobile}}</td>
+      <td>
+         <a type="submit" href="{% url 'tupdate' a.tname %}" class="btn btn-outline-success" value="submit">edit</a>
+        <a type="submit" href="{% url 'tdelete' a.tname %}" class="btn btn-outline-success" value="submit">delte</a>
+      </td>
+      {% endfor %}
+    </tr>
+  </tbody>
+  </div>
+</div>
+</table>
+{% endblock %}
