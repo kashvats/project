@@ -64,7 +64,7 @@ def teacheradd(request):
             address = ak.cleaned_data.get('address')
             mobile = ak.cleaned_data.get('mobile')
             subject = ak.cleaned_data.get('subject')
-            up = teacher(tname=name, teacherid=admission_id(), subject=subject, address=address, mobile=mobile)
+            up = teacher(tname=name, username=request.user,teacherid=admission_id(), subject=subject, address=address, mobile=mobile)
             up.save()
             return HttpResponseRedirect('/tlist')
         else:
@@ -84,7 +84,7 @@ def teacherupdate(request, id):
             address = ak.cleaned_data.get('address')
             mobile = ak.cleaned_data.get('mobile')
             subject = ak.cleaned_data.get('subject')
-            up = teacher(id=id,tname=name, teacherid=admission_id(), subject=subject, address=address, mobile=mobile)
+            up = teacher(id=id,tname=name, username=request.user,teacherid=admission_id(), subject=subject, address=address, mobile=mobile)
             up.save()
             return HttpResponseRedirect('/tlist')
         else:
@@ -118,7 +118,7 @@ def studentadd(request):
             father = ak.cleaned_data.get('father')
             mobile = ak.cleaned_data.get('mobile')
             roll = ak.cleaned_data.get('roll')
-            up = student(name=name, admissionid=admission_id(), roll=roll, classe=classe, address=address,
+            up = student(name=name,username=request.user,admissionid=admission_id(), roll=roll, classe=classe, address=address,
                          mother=mother, father=father, mobile=mobile)
             up.save()
             return redirect('/')
@@ -142,7 +142,7 @@ def studentupdate(request, id):
             father = ak.cleaned_data.get('father')
             mobile = ak.cleaned_data.get('mobile')
             roll = ak.cleaned_data.get('roll')
-            up = student(id=id,roll=roll,name=name,admissionid=admission_id(), classe=classe, address=address, mother=mother, father=father, mobile=mobile)
+            up = student(id=id,username=request.user,roll=roll,name=name,admissionid=admission_id(), classe=classe, address=address, mother=mother, father=father, mobile=mobile)
             up.save()
             return HttpResponseRedirect('/')
         else:
